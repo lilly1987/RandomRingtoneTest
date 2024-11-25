@@ -1,0 +1,154 @@
+
+    //private var map= mutableMapOf<String, MutableState<Boolean>>()
+    var map= mutableMapOf<String, Boolean>()
+
+                map["file$i"]= true
+                //map["file$i"]= remember { mutableStateOf(false) }
+
+                Surface(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Scaffold(
+                        //topBar = { // TopBar
+                        //    TopAppBar(title = { Text(text = "TopAppBar")}
+                        //        , navigationIcon = {
+                        //            Icon(Icons.Default.ArrowBack, contentDescription = "ArrowBack")
+                        //        }
+                        //        , actions = {
+                        //            Icon(Icons.Default.Menu, contentDescription = "Menu")
+                        //            Icon(Icons.Default.Search, contentDescription = "Search")
+                        //        }
+                        //    )
+                        //},
+                        //floatingActionButtonPosition = FabPosition.End,   // Floating Button
+                        //floatingActionButton = { FloatingActionButton(onClick = {  }) {
+                        //    Text(text = "Btn")
+                        //}},
+                        content =
+                        {
+                            LazyColumn (
+                                //modifier = Modifier.fillMaxWidth()
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(it)
+                            ) {
+                                items(map){ entry  ->(
+
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.Start
+                                    ) {
+                                        Checkbox(
+                                            checked = entry.value,
+                                            onCheckedChange = {
+                                                Log.d("Checkbox", "checkBoxContainer: $it")
+                                                map[t] = it
+                                            },
+                                            modifier = Modifier.size(24.dp)
+                                        )
+                                        Text(
+                                            text = t,
+                                            textAlign = TextAlign.Start
+                                        )
+                                    }
+
+                                        )
+                                }
+                                //item(map) { item ->
+                                //    val index = items.indexOf(item)
+//
+                                //    Row(
+                                //        modifier = Modifier
+                                //            .fillMaxWidth()
+                                //            .padding(vertical = 8.dp)
+                                //            .clickable {
+                                //                selectedItems[index] = !selectedItems[index] // 체크박스 상태 토글
+                                //            }
+                                //            .padding(16.dp),
+                                //        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically // 세로 정렬
+                                //    ) {
+                                //        Checkbox(
+                                //            checked = selectedItems[index],
+                                //            onCheckedChange = { checked -> selectedItems[index] = checked }
+                                //        )
+                                //        Text(
+                                //            text = item,
+                                //            color = Color.Black,
+                                //            modifier = Modifier.padding(start = 16.dp)
+                                //        )
+                                //    }
+                                //}
+
+                                //map.forEach{
+                                //    Row(
+                                //        modifier = Modifier.fillMaxWidth(),
+                                //        horizontalArrangement = Arrangement.Start
+                                //    ) {
+                                //        Checkbox(
+                                //            checked = it.value,
+                                //            onCheckedChange = {
+                                //                Log.d("Checkbox", "checkBoxContainer: $it")
+                                //                map[] = it
+                                //            },
+                                //            modifier = Modifier.size(24.dp)
+                                //        )
+                                //        Text(
+                                //            text = it.key,
+                                //            textAlign = TextAlign.Start
+                                //        )
+                                //    }
+                                //}
+                            }
+                        }
+                        //bottomBar = {
+                        //    BottomAppBar(
+                        //    ) {
+                        //        IconButton(onClick = {}) {
+                        //            Icon(Icons.Default.Favorite, contentDescription = "Favorite")
+                        //        }
+                        //        IconButton(onClick = {}) {
+                        //            Icon(Icons.Default.Add, contentDescription = "Add")
+                        //        }
+                        //    }
+                        //}
+                    )
+                }
+
+
+                // item list
+                @Composable
+                fun ItemList (cnt : Int) {
+
+
+                    // 아이템 체크 박스 변수
+                    val selectedItems = remember { mutableStateListOf<Boolean>().apply { repeat(cnt) { add(false) } } }
+
+                    //아이템 체크 박스
+                    LazyColumn {
+                        //itemsIndexed(items) { item ->
+                        //    val index = items.indexOf(item)
+                //
+                        //    Row(
+                        //        modifier = Modifier
+                        //            .fillMaxWidth()
+                        //            .padding(vertical = 8.dp)
+                        //            .clickable {
+                        //                selectedItems[index] = !selectedItems[index] // 체크박스 상태 토글
+                        //            }
+                        //            .padding(16.dp),
+                        //        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically // 세로 정렬
+                        //    ) {
+                        //        Checkbox(
+                        //            checked = selectedItems[index],
+                        //            onCheckedChange = { checked -> selectedItems[index] = checked }
+                        //        )
+                        //        Text(
+                        //            text = item,
+                        //            color = Color.Black,
+                        //            modifier = Modifier.padding(start = 16.dp)
+                        //        )
+                        //    }
+                        //}
+                    }
+
+                }
