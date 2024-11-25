@@ -52,23 +52,25 @@ class MainActivity : ComponentActivity() {
         val directory :File= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES)
         map[directory.absolutePath]= mutableStateOf( true)
 
-        getFilesApi29Plus(this,directory.absolutePath).forEach {
-            map[it]= mutableStateOf( true)
-        }
-
-        //val folderManager = FolderMusicManager()
-        //// 하위 폴더 포함하여 모든 음악 가져오기
-        //val allMusicInSubFolders = folderManager.getMusicFromSubFolders(
-        //    this,
-        //    "/storage/emulated/0"
-        //    //"/storage/emulated/0/Ringtones"
-        //)
-//
-        //map["${allMusicInSubFolders.size}"]= mutableStateOf( true)
-//
-        //allMusicInSubFolders.forEach {
-        //    map[it.path]= mutableStateOf( true)
+        //val list = getFilesApi29Plus(this, directory.absolutePath)// 오류 발생
+        //map["${list.size}"]= mutableStateOf( true)
+        //list.forEach {
+        //    //map[it]= mutableStateOf( true)
         //}
+
+        val folderManager = FolderMusicManager()
+        // 하위 폴더 포함하여 모든 음악 가져오기
+        val allMusicInSubFolders = folderManager.getMusicFromSubFolders(
+            this,
+            //"/storage/emulated/0"
+            "/storage/emulated/0/Ringtones"
+        )
+//
+        map["${allMusicInSubFolders.size}"]= mutableStateOf( true)
+//
+        allMusicInSubFolders.forEach {
+            map[it.path]= mutableStateOf( true)
+        }
 
         //map[DIRECTORY_RINGTONES]= mutableStateOf( false)
         //if (directory.exists() && directory.isDirectory) {
@@ -106,7 +108,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.Q)
+//@RequiresApi(Build.VERSION_CODES.Q)
 fun getFilesApi29Plus(context: Context, folderPath: String): List<String> {
     val fileList = mutableListOf<String>()
 
